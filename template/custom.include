@@ -1,0 +1,33 @@
+<#-- 本文件包含一些公共的变量 -->
+
+<#-- actionBasePath 用于struts,springmvc框架的action路径前缀,如 /namespace/User/list.do的/namespace/User部分,可以自定义这个变量 -->
+<#assign actionBasePath = "/"+namespace+"/"+table.className>
+
+<#-- jspFileBasePath 用于struts,springmvc框架的java文件引用的jsp前缀,如 /namespace/User/list.jsp的/namespace/User部分 -->
+<#assign jspFileBasePath = "/"+namespace+"/"+table.className>
+
+<#-- ---------------- -->
+
+<#assign springMVCUrlMapping = "sac">
+
+<#macro dateColumn isDate>
+    <#if isDate><#nested></#if>
+</#macro>
+<#macro hasForeignKey columnNameP>
+参数:${columnNameP}
+	<#list table.importedKeys.associatedTables?values as foreignKey>
+	<#assign fkSqlTable = foreignKey.sqlTable>
+	<#assign fkTable	= fkSqlTable.className>
+	<#assign fkPojoClass = fkSqlTable.className>
+	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
+	fkPojoClass:${fkPojoClass}|fkPojoClassVar: ${fkPojoClassVar}|fkPojoClassVar:${fkPojoClassVar}
+	<#list foreignKey.parentColumns?values as fkColumn>
+		${fkColumn}|
+	</#list>
+        <#list fkSqlTable.columns as column>
+        <#if column.pk>
+        ${column.columnName}(${fkPojoClassVar}
+        </#if>
+		</#list>
+	</#list>
+</#macro>

@@ -1,0 +1,10 @@
+import java.util.*;
+import java.common.base.*;
+import java.common.util.*;
+
+import ${basepackage}.${moduleName}.model.*;
+import ${basepackage}.${moduleName}.repository.*;
+import ${basepackage}.${moduleName}.service.*;
+import ${basepackage}.${moduleName}.vo.query.*;
+
+
